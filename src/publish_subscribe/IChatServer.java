@@ -13,16 +13,21 @@ import java.rmi.Remote;
 import java.rmi.RemoteException;
 
 public interface IChatServer extends java.rmi.Remote {
+    // Chat 
     void login(String name, IChatClient newClient) throws RemoteException; 
     void logout(String name)throws RemoteException;
     void send(Mensaje message, String cliente) throws RemoteException;
     
-    //Canal 
+    // Canal 
     void subscribeChannel(String nameCliente, IChatClient cliente, String canal)throws RemoteException;
-    void unsubscribeChannel(String nameC, String canal) throws RemoteException;
-    
-    void sendBroadcast(Mensaje message)throws RemoteException;
+    void unsubscribeChannel(String nameCliente, String canal) throws RemoteException;
     void getCurrentChannels(String cliente) throws RemoteException;
-    
     void getAllChannels(IChatClient cliente) throws RemoteException;
+    
+    // Topics
+    void subscribeTopic(String nameCliente, String canal, String topico)throws RemoteException;
+    void unsubscribeTopic(String nameCliente, String canal, String topico) throws RemoteException;
+    void getCurrentTopics(String cliente) throws RemoteException;
+    void getAllTopics(String cliente) throws RemoteException;
+    
 }
